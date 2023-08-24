@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DesExemples.Views.MasterHomePage"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:tabs="http://sharpnado.com"
+             xmlns:contentViews="clr-namespace:DesExemples.Views.TabViews"
+             ios:Page.UseSafeArea="False"
+             Shell.PresentationMode="Animated"
+             Title="MasterHomePage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BottomTab" TargetType="tabs:BottomTabItem">
+                <Setter Property="SelectedTabColor" Value="#FD963D"/>
+                <Setter Property="UnselectedLabelColor" Value="Gray"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <AbsoluteLayout>
+        <tabs:ViewSwitcher x:Name="Switcher"
+                           Animate="True"
+                           AbsoluteLayout.LayoutBounds="0,0,1,1"
+                           AbsoluteLayout.LayoutFlags="SizeProportional"
+                           SelectedIndex="{Binding PositionSelected, Mode=TwoWay}">
+            <tabs:DelayedView x:TypeArguments="contentViews:TabUno"
+                              DelayInMilliseconds="2500"
+                              AccentColor="#485BC0"
+                              Animate="True"
+                              UseActivityIndicator="True" />
+            <tabs:DelayedView x:TypeArguments="contentViews:TabDos"
+                              AccentColor="{StaticResource Primary}"
+                              Animate="True"
+                              UseActivityIndicator="True" />
+            <tabs:DelayedView x:TypeArguments="contentViews:TabTres"
+                              AccentColor="#485BC0"
+                              Animate="True"
+                              UseActivityIndicator="True" />
+        </tabs:ViewSwitcher>
+        <tabs:TabHostView x:Name="xtabhost"
+                          AbsoluteLayout.LayoutBounds="0.5,1"
+                          AbsoluteLayout.LayoutFlags="PositionProportional"
+                          VerticalOptions="End"
+                          SelectedIndex="{Binding PositionSelected, Mode=TwoWay}"
+                          Margin="45"
+                          TabType="Fixed"
+                          BackgroundColor="#292920"
+                          WidthRequest="250"
+                          SegmentedOutlineColor="Transparent"
+                          HeightRequest="35"
+                          CornerRadius="17"
+                          IsSegmented="True">
+            <tabs:BottomTabItem Style="{StaticResource BottomTab}"  Label="&#xf015;" FontFamily="Font_Awesome_Solid"/>
+            <tabs:BottomTabItem Style="{StaticResource BottomTab}" Label="&#xf075;" FontFamily="Font_Awesome_Solid"/>
+            <tabs:BottomTabItem Style="{StaticResource BottomTab}" Label="&#xf4fe;" FontFamily="Font_Awesome_Solid"/>
+        </tabs:TabHostView>
+    </AbsoluteLayout>
+</ContentPage>
